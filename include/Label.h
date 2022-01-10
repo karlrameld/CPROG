@@ -39,6 +39,8 @@ private:
         texture = SDL_CreateTextureFromSurface(sys.ren, temp);
         SDL_FreeSurface(temp);
     }
+    Label(const Label &) = delete;
+    const Label &operator=(const Label &) = delete;
 };
 
 #endif

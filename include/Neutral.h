@@ -14,13 +14,17 @@ public:
     void collisionHandler(int other);
     bool collsionAftermath(int other);
     virtual void movement() = 0;
+
 protected:
     Neutral(int x, std::string imgPath) : Component(x, -60, 60, 60, 2)
     {
         texture = IMG_LoadTexture(sys.ren, (resPath + imgPath).c_str());
     }
+
 private:
     SDL_Texture *texture;
+    Neutral(const Neutral &) = delete;
+    const Neutral &operator=(const Neutral &) = delete;
 };
 
 #endif

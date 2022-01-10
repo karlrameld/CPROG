@@ -14,8 +14,13 @@ public:
     virtual void spawnFunc() = 0;
 
 protected:
-    Spawner() : Component(0, 0, 0, 0, 0) {
+    Spawner() : Component(0, 0, 0, 0, 0)
+    {
     }
+
+private:
+    Spawner(const Spawner &) = delete;
+    const Spawner &operator=(const Spawner &) = delete;
 };
 
 #endif

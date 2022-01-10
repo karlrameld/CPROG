@@ -11,8 +11,6 @@
 #include "Neutral.h"
 #include "Enemy.h"
 #include "Label.h"
-//#include <SDL2/SDL_image.h>
-//#include <SDL2/SDL_ttf.h>
 #include <string>
 #include <random>
 #include <iostream>
@@ -25,99 +23,7 @@ int screenHeight = 1080;
 std::random_device rd;
 std::mt19937 rng(rd());
 Session ses;
-/*
-class Score : public Component
-{
-public:
-	static Score *getInstance()
-	{
-		return new Score();
-	}
-	Score() : Component(10, 65, 120, 45, 0)
-	{
-		scoreString = "Score : " + std::to_string(scoraaaaaaaaaae);
-		SDL_Surface *scoreText =
-			TTF_RenderText_Solid(TTF_OpenFont((resPath + "fonts/default.ttf").c_str(), 45), scoreString.c_str(), {255, 255, 255});
-		texture = SDL_CreateTextureFromSurface(sys.ren, scoreText);
-		SDL_FreeSurface(scoreText);
-	}
-	~Score()
-	{
-		SDL_DestroyTexture(texture);
-	}
-	void draw() const
-	{
-		const SDL_Rect &rect = getRect();
-		SDL_RenderCopy(sys.ren, texture, NULL, &rect);
-	}
-	void tick()
-	{
-		scoreString = "Score : " + std::to_string(score);
-		SDL_DestroyTexture(texture);
-		SDL_Surface *surf = TTF_RenderText_Solid(TTF_OpenFont((resPath + "fonts/default.ttf").c_str(), 45),
-												 scoreString.c_str(), {255, 255, 255});
-		texture = SDL_CreateTextureFromSurface(sys.ren, surf);
-		SDL_FreeSurface(surf);
-	}
 
-	void collisionHandler(int other) {}
-	bool collsionAftermath(int other)
-	{
-		return false;
-	}
-
-private:
-	SDL_Texture *texture;
-	std::string scoreString;
-};
-
-class Ammo : public Component
-{
-public:
-	static Ammo *getInstance()
-	{
-		return new Ammo();
-	}
-	Ammo() : Component(10, 10, 120, 45, 0)
-	{
-		scoreString = "Ammo : " + std::to_string(ammo);
-		SDL_Surface *scoreText =
-			TTF_RenderText_Solid(TTF_OpenFont((resPath + "fonts/default.ttf").c_str(), 45), scoreString.c_str(), {255, 255, 255});
-		texture = SDL_CreateTextureFromSurface(sys.ren, scoreText);
-		SDL_FreeSurface(scoreText);
-	}
-	~Ammo()
-	{
-		SDL_DestroyTexture(texture);
-	}
-	void draw() const
-	{aa
-		const SDL_Rect &rect = getRect();
-		SDL_RenderCopy(sys.ren, texture, NULL, &rect);
-	}ddddddddd
-	void tick()
-	{
-		scoreString = "Ammo : " + std::to_string(ammo);
-		SDL_DestroyTexture(texture);
-		SDL_Surface *surf = TTF_RenderText_Solid(TTF_OpenFont((resPath + "fonts/default.ttf").c_str(), 45),
-												 scoreString.c_str(), {255, 255, 255});
-		texture = SDL_CreateTextureFromSurface(sys.ren, surf);
-		SDL_FreeSurface(surf);
-	}
-
-	void collisionHandler(int other) {}
-	bool collsionAftermath(int other)
-	{
-		return false;
-	}
-
-private:
-	SDL_Texture *texture;
-	std::string scoreString;
-};
-
-
-*/
 class Laser : public Bullet
 {
 public:
@@ -136,6 +42,8 @@ public:
 
 private:
 	Laser(int x, int y) : Bullet(x, y, "images/laser.png") {}
+	Laser(const Laser &) = delete;
+	const Laser &operator=(const Laser &) = delete;
 };
 
 class Ball : public Bullet
@@ -156,6 +64,8 @@ public:
 
 private:
 	Ball(int x, int y) : Bullet(x, y, "images/ball.png") {}
+	Ball(const Ball &) = delete;
+	const Ball &operator=(const Ball &) = delete;
 };
 
 class Shooter : public Enemy
@@ -225,6 +135,8 @@ private:
 	int wait = 200;
 	bool move = false;
 	Shooter(int x) : Enemy(x, "images/medium.png") {}
+	Shooter(const Shooter &) = delete;
+	const Shooter &operator=(const Shooter &) = delete;
 };
 
 class Dropper : public Enemy
@@ -257,6 +169,8 @@ public:
 private:
 	int counter = 360;
 	Dropper(int x) : Enemy(x, "images/easy.png") {}
+	Dropper(const Dropper &) = delete;
+	const Dropper &operator=(const Dropper &) = delete;
 };
 
 class Earth : public Neutral
@@ -277,6 +191,8 @@ public:
 
 private:
 	Earth(int x) : Neutral(x, "images/earth.png") {}
+	Earth(const Earth &) = delete;
+	const Earth &operator=(const Earth &) = delete;
 };
 
 class GameSpawner : public Spawner
@@ -324,6 +240,8 @@ public:
 private:
 	int counter = 0;
 	GameSpawner() : Spawner() {}
+	GameSpawner(const GameSpawner &) = delete;
+	const GameSpawner &operator=(const GameSpawner &) = delete;
 };
 
 class PlayerObj : public Player
@@ -347,6 +265,8 @@ public:
 
 private:
 	PlayerObj() : Player(screenWidth, screenHeight) {}
+	PlayerObj(const PlayerObj &) = delete;
+	const PlayerObj &operator=(const PlayerObj &) = delete;
 };
 
 void Component::delComp()

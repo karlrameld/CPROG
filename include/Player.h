@@ -37,6 +37,8 @@ private:
     bool left;
     bool up;
     bool down;
+    Player(const Player &) = delete;
+    const Player &operator=(const Player &) = delete;
 };
 
 #endif

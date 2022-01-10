@@ -27,6 +27,8 @@ protected:
 
 private:
 	int type;
+	Component(const Component &) = delete;
+	const Component &operator=(const Component &) = delete;
 };
 
 #endif

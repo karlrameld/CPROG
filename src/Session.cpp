@@ -1,6 +1,5 @@
 #include "Session.h"
 
-
 using namespace std;
 
 #define FPS 144
@@ -83,6 +82,22 @@ bool checkCollision(SDL_Rect a, SDL_Rect b)
 	return true;
 }
 
+void Session::hit(Component *c)
+{
+	int x = c->getType();
+	switch (x)
+	{
+	case 2:
+		label->decreaseValue();
+		break;
+	case 3:
+		label->increaseValue();
+		break;
+	default:
+		break;
+	}
+}
+
 void Session::run()
 {
 	bool quit = false;
@@ -143,6 +158,8 @@ void Session::run()
 						c->collisionHandler(c2->getType());
 						if (c->collsionAftermath(c2->getType()))
 							removed.push_back(c);
+						if(c->getType() == 4)
+							hit(c2);
 					}
 				}
 			}
@@ -153,18 +170,6 @@ void Session::run()
 				 i != comps.end();)
 				if (*i == c)
 				{
-					int x = c->getType();
-					switch (x)
-					{
-					case 2:
-						label->decreaseValue();
-						break;
-					case 3:
-						label->increaseValue();
-						break;
-					default:
-						break;
-					}
 					i = comps.erase(i);
 				}
 				else

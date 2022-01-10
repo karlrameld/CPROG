@@ -23,6 +23,8 @@ protected:
 
 private:
     SDL_Texture *texture;
+    Bullet(const Bullet &) = delete;
+    const Bullet &operator=(const Bullet &) = delete;
 };
 
 #endif

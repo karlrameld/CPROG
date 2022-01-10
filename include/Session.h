@@ -15,6 +15,7 @@ public:
 	void add(Component *);
 	void remove(Component *);
 	void run();
+	void hit(Component *);
 
 private:
 	std::vector<Component *> comps;
