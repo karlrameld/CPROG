@@ -1,9 +1,5 @@
 #include "Session.h"
-#include <SDL2/SDL.h>
-#include "Component.h"
-#include "Player.h"
-#include "System.h"
-#include <iostream>
+
 
 using namespace std;
 
@@ -29,6 +25,12 @@ void Session::setPlayer(Player *play)
 {
 	player = play;
 	added.push_back(play);
+}
+
+void Session::setLabel(Label *l)
+{
+	label = l;
+	added.push_back(label);
 }
 
 void Session::add(Component *comp)
@@ -151,6 +153,18 @@ void Session::run()
 				 i != comps.end();)
 				if (*i == c)
 				{
+					int x = c->getType();
+					switch (x)
+					{
+					case 2:
+						label->decreaseValue();
+						break;
+					case 3:
+						label->increaseValue();
+						break;
+					default:
+						break;
+					}
 					i = comps.erase(i);
 				}
 				else

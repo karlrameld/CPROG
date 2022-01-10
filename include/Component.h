@@ -2,7 +2,6 @@
 #define COMPONENT_H
 #include <SDL2/SDL.h>
 
-
 class Component
 {
 public:
@@ -17,7 +16,7 @@ public:
 	virtual void collisionHandler(int other) = 0;
 	virtual bool collsionAftermath(int other) = 0;
 	void delComp();
-	void addComp(Component*);
+	void addComp(Component *);
 
 protected:
 	Component(int x, int y, int w, int h, int t) : rect{x, y, w, h}
@@ -25,6 +24,8 @@ protected:
 		type = t; // 0 = no type, 1 = player, 2 = neutral, 3 = enemy, 4 = bullet
 	}
 	SDL_Rect rect;
+
+private:
 	int type;
 };
 

@@ -1,3 +1,6 @@
+#ifndef ENEMY_H
+#define ENEMY_H
+
 #include "Component.h"
 #include "System.h"
 #include <SDL2/SDL_image.h>
@@ -19,3 +22,5 @@ protected:
 private:
     SDL_Texture *texture;
 };
+
+#endif

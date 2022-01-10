@@ -11,7 +11,7 @@ void Enemy::draw() const
 }
 void Enemy::tick()
 {
-    if (rect.y >= screenHeight + 60)
+    if (getRect().y >= screenHeight + 60)
         delComp();
     else
     {

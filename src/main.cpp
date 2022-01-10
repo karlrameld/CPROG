@@ -10,6 +10,7 @@
 #include "Spawner.h"
 #include "Neutral.h"
 #include "Enemy.h"
+#include "Label.h"
 //#include <SDL2/SDL_image.h>
 //#include <SDL2/SDL_ttf.h>
 #include <string>
@@ -34,7 +35,7 @@ public:
 	}
 	Score() : Component(10, 65, 120, 45, 0)
 	{
-		scoreString = "Score : " + std::to_string(score);
+		scoreString = "Score : " + std::to_string(scoraaaaaaaaaae);
 		SDL_Surface *scoreText =
 			TTF_RenderText_Solid(TTF_OpenFont((resPath + "fonts/default.ttf").c_str(), 45), scoreString.c_str(), {255, 255, 255});
 		texture = SDL_CreateTextureFromSurface(sys.ren, scoreText);
@@ -90,10 +91,10 @@ public:
 		SDL_DestroyTexture(texture);
 	}
 	void draw() const
-	{
+	{aa
 		const SDL_Rect &rect = getRect();
 		SDL_RenderCopy(sys.ren, texture, NULL, &rect);
-	}
+	}ddddddddd
 	void tick()
 	{
 		scoreString = "Ammo : " + std::to_string(ammo);
@@ -360,10 +361,12 @@ void Component::addComp(Component *c)
 
 int main(int argc, char **argv)
 {
+	Label *label = Label::getInstance(10, 20, 120, 45, "Score: ", 45, 0);
 	PlayerObj *player = PlayerObj::getInstance();
 	GameSpawner *spawner = GameSpawner::getInstance();
 	ses.add(spawner);
 	ses.setPlayer(player);
+	ses.setLabel(label);
 	ses.run();
 	_CrtDumpMemoryLeaks();
 	return 0;

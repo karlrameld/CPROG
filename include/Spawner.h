@@ -1,3 +1,6 @@
+#ifndef SPAWNER_H
+#define SPAWNER_H
+
 #include "Component.h"
 
 class Spawner : public Component
@@ -14,3 +17,5 @@ protected:
     Spawner() : Component(0, 0, 0, 0, 0) {
     }
 };
+
+#endif
