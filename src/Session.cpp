@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define FPS 144
+#define FPS 360
 
 Session::~Session()
 {
@@ -100,8 +100,9 @@ void Session::hit(Component *c)
 
 void Session::run()
 {
+	int gameOver = 10000;
 	bool quit = false;
-	Uint32 tickInterval = 200 / FPS;
+	Uint32 tickInterval = 1000 / FPS;
 	while (!quit)
 	{
 		Uint32 nextTick = SDL_GetTicks() + tickInterval;
@@ -158,7 +159,7 @@ void Session::run()
 						c->collisionHandler(c2->getType());
 						if (c->collsionAftermath(c2->getType()))
 							removed.push_back(c);
-						if(c->getType() == 4)
+						if (c->getType() == 4)
 							hit(c2);
 					}
 				}
@@ -191,7 +192,17 @@ void Session::run()
 				b = true;
 		}
 		if (!b)
-			quit = true;
+		{
+			if (gameOver == 10000)
+			{
+				tickInterval = 10;
+				Label *l = Label::getInstance((screenWidth / 2) - 150, (screenHeight / 2) - 50, 300, 100, "Game Over! Score: ", 100, label->getValue());
+				add(l);
+			}
+			if (gameOver == 0)
+				quit = true;
+			gameOver--;
+		}
 		if (delay > 0)
 			SDL_Delay(delay);
 	} // yttre while

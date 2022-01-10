@@ -14,6 +14,7 @@ public:
     void collisionHandler(int other);
     bool collsionAftermath(int other);
     virtual void action() = 0;
+    virtual void impact() = 0;
 
 protected:
     Bullet(int x, int y, std::string imgPath) : Component(x, y, 30, 30, 4)

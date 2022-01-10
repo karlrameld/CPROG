@@ -20,10 +20,12 @@ void Bullet::tick()
 }
 void Bullet::collisionHandler(int other)
 {
+    if(other == 1 || other == 2 || other == 3)
+        impact();
 }
 bool Bullet::collsionAftermath(int other)
 {
-    if (other == 4)
+    if (other == 4 || other == 0)
         return false;
     return true;
 }

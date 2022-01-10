@@ -11,6 +11,7 @@
 #include "Neutral.h"
 #include "Enemy.h"
 #include "Label.h"
+#include "Effect.h"
 #include <string>
 #include <random>
 #include <iostream>
@@ -23,6 +24,24 @@ int screenHeight = 1080;
 std::random_device rd;
 std::mt19937 rng(rd());
 Session ses;
+
+class Explosion : public Effect
+{
+public:
+	static Explosion *getInstance(int x, int y)
+	{
+		return new Explosion(x, y);
+	}
+	~Explosion()
+	{
+		Effect::~Effect();
+	}
+
+private:
+	Explosion(int x, int y) : Effect(x, y, "images/expsheet.png", 5, 5, 50) {}
+	Explosion(const Explosion &) = delete;
+	const Explosion &operator=(const Explosion &) = delete;
+};
 
 class Laser : public Bullet
 {
@@ -38,6 +57,11 @@ public:
 	void action()
 	{
 		rect.y -= 2;
+	}
+	void impact()
+	{
+		Explosion *e = Explosion::getInstance((rect.x - (rect.w / 2)), rect.y);
+		addComp(e);
 	}
 
 private:
@@ -60,6 +84,9 @@ public:
 	void action()
 	{
 		rect.y++;
+	}
+	void impact()
+	{
 	}
 
 private:
@@ -96,7 +123,7 @@ public:
 			else
 			{
 				rect.x++;
-				if (rect.x == screenWidth)
+				if (rect.x == screenWidth - 60)
 					move = true;
 			}
 			if (reload == 0)
@@ -209,7 +236,7 @@ public:
 	void spawnFunc()
 	{
 		counter++;
-		if (counter == 500)
+		if (counter == 100)
 		{
 			std::uniform_int_distribution<int> uni(0, (screenWidth - 60));
 			int x = uni(rng);
@@ -233,7 +260,7 @@ public:
 			}
 		}
 
-		if (counter > 500)
+		if (counter > 100)
 			counter = 0;
 	}
 

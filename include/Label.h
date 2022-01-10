@@ -20,6 +20,7 @@ public:
     void tick(){};
     void collisionHandler(int other) {}
     bool collsionAftermath(int other) { return false; }
+    int getValue() { return data; }
     void increaseValue();
     void decreaseValue();
     void create();
