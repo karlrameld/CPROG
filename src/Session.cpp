@@ -198,6 +198,7 @@ void Session::run()
 				tickInterval = 10;
 				Label *l = Label::getInstance((screenWidth / 2) - 150, (screenHeight / 2) - 50, 300, 100, "Game Over! Score: ", 100, label->getValue());
 				add(l);
+				remove(label);
 			}
 			if (gameOver == 0)
 				quit = true;

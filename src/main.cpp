@@ -236,7 +236,7 @@ public:
 	void spawnFunc()
 	{
 		counter++;
-		if (counter == 100)
+		if (counter == 200)
 		{
 			std::uniform_int_distribution<int> uni(0, (screenWidth - 60));
 			int x = uni(rng);
@@ -260,7 +260,7 @@ public:
 			}
 		}
 
-		if (counter > 100)
+		if (counter > 200)
 			counter = 0;
 	}
 
