@@ -12,6 +12,7 @@
 #include "Enemy.h"
 #include "Label.h"
 #include "Effect.h"
+#include "Keybind.h"
 #include <string>
 #include <random>
 #include <iostream>
@@ -296,6 +297,38 @@ private:
 	const PlayerObj &operator=(const PlayerObj &) = delete;
 };
 
+class SpaceBarKeybind : public Keybind
+{
+public:
+	static SpaceBarKeybind *getInstance(SDL_Scancode k)
+	{
+		return new SpaceBarKeybind(k);
+	}
+	~SpaceBarKeybind()
+	{
+		Keybind::~Keybind();
+	}
+	void action()
+	{
+		counter++;
+		if (counter > 2)
+		{
+			std::uniform_int_distribution<int> uni(0, (screenWidth - 60));
+			int x = uni(rng);
+
+			Dropper *d = Dropper::getInstance(x);
+			addComp(d);
+			counter = 0;
+		}
+	}
+
+private:
+	int counter = 0;
+	SpaceBarKeybind(SDL_Scancode k) : Keybind(k) {}
+	SpaceBarKeybind(const SpaceBarKeybind &) = delete;
+	const SpaceBarKeybind &operator=(const SpaceBarKeybind &) = delete;
+};
+
 void Component::delComp()
 {
 	ses.remove(this);
@@ -311,9 +344,11 @@ int main(int argc, char **argv)
 	Label *label = Label::getInstance(10, 20, 120, 45, "Score: ", 45, 0);
 	PlayerObj *player = PlayerObj::getInstance();
 	GameSpawner *spawner = GameSpawner::getInstance();
+	SpaceBarKeybind *spacebar = SpaceBarKeybind::getInstance(SDL_SCANCODE_SPACE); // this is purely as a proof of concept, and was very helpful in testing try holding spacebar while playing :)
 	ses.add(spawner);
 	ses.setPlayer(player);
 	ses.setLabel(label);
+	ses.add(spacebar);
 	ses.run();
 	_CrtDumpMemoryLeaks();
 	return 0;

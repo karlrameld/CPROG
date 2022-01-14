@@ -10,7 +10,7 @@ void Effect::draw() const
     SDL_RenderCopy(sys.ren, texture, &iRect, &rect);
 }
 void Effect::tick()
-{
+{ // source: https://gigi.nullneuron.net/gigilabs/animations-with-sprite-sheets-in-sdl2/
     if (counter == 0)
     {
         currentframe++;

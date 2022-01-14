@@ -8,7 +8,7 @@ Session::~Session()
 {
 	for (Component *c : comps)
 	{
-		delete[] c;
+		delete c;
 	}
 	for (Component *c : added)
 	{
@@ -42,43 +42,14 @@ void Session::remove(Component *comp)
 	removed.push_back(comp);
 }
 
-bool checkCollision(SDL_Rect a, SDL_Rect b)
-{
-	int leftA, leftB;
-	int rightA, rightB;
-	int topA, topB;
-	int bottomA, bottomB;
-
-	leftA = a.x;
-	rightA = a.x + a.w;
-	topA = a.y;
-	bottomA = a.y + a.h;
-
-	leftB = b.x;
-	rightB = b.x + b.w;
-	topB = b.y;
-	bottomB = b.y + b.h;
-
-	if (bottomA <= topB)
-	{
+bool collision(SDL_Rect one, SDL_Rect two) // this might be hard to follow so explanation is provided.
+{ // this works by checking if opposing sides of the rects don't intersect and returing false if that condition is met
+// source: https://gamedev.net/forums/topic/594298-very-simple-collision-detection-in-sdl-and-c/4767560/
+	if (one.y + one.h <= two.y || // if bottom of one(y cord + height) lower than top of two(y cord)
+		one.y >= two.y + two.h || // if top of one(y cord) bellow bottom of two(y cord + height)
+		one.x + one.w <= two.x || // if right side of one(x cord + width) left of the left side of two(x cord)
+		one.x >= two.x + two.w)	  // if left side of one(x cord) right of the right side of two(x cord + width)
 		return false;
-	}
-
-	if (topA >= bottomB)
-	{
-		return false;
-	}
-
-	if (rightA <= leftB)
-	{
-		return false;
-	}
-
-	if (leftA >= rightB)
-	{
-		return false;
-	}
-
 	return true;
 }
 
@@ -100,7 +71,7 @@ void Session::hit(Component *c)
 
 void Session::run()
 {
-	int gameOver = 10000;
+	int gameOver = 10000; // tics until auto close
 	bool quit = false;
 	Uint32 tickInterval = 1000 / FPS;
 	while (!quit)
@@ -121,6 +92,7 @@ void Session::run()
 				break;
 			}
 		}
+		// this happens outside while SDL_PollEvent loop to make movements smoother.
 		const Uint8 *state = SDL_GetKeyboardState(NULL);
 		if (state[SDL_SCANCODE_W])
 		{
@@ -154,7 +126,7 @@ void Session::run()
 				SDL_Rect collider = c2->getRect();
 				if (!(c->Compare(c2)))
 				{
-					if (checkCollision(check, collider))
+					if (collision(check, collider))
 					{
 						c->collisionHandler(c2->getType());
 						if (c->collsionAftermath(c2->getType()))

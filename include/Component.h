@@ -5,6 +5,7 @@
 class Component
 {
 public:
+	virtual ~Component(){};
 	virtual void draw() const = 0;
 	SDL_Rect getRect() const { return rect; }
 	virtual void tick() = 0;

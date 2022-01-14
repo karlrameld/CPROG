@@ -6,7 +6,7 @@
 class Spawner : public Component
 {
 public:
-    ~Spawner();
+    ~Spawner(){};
     void draw() const {}
     void tick();
     void collisionHandler(int other) {}
