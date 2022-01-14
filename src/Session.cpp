@@ -5,18 +5,19 @@ using namespace std;
 #define FPS 360
 
 Session::~Session()
-{
+{ // idk if I should delete player and label separately here, I get a segmentation fault when I do which I
+//iterporate as a no, but then again I'm not that smart
 	for (Component *c : comps)
 	{
 		delete c;
 	}
 	for (Component *c : added)
 	{
-		delete[] c;
+		delete c;
 	}
 	for (Component *c : removed)
 	{
-		delete[] c;
+		delete c;
 	}
 }
 

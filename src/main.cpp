@@ -35,7 +35,6 @@ public:
 	}
 	~Explosion()
 	{
-		Effect::~Effect();
 	}
 
 private:
@@ -53,7 +52,6 @@ public:
 	}
 	~Laser()
 	{
-		Bullet::~Bullet();
 	}
 	void action()
 	{
@@ -80,7 +78,6 @@ public:
 	}
 	~Ball()
 	{
-		Bullet::~Bullet();
 	}
 	void action()
 	{
@@ -105,7 +102,6 @@ public:
 	}
 	~Shooter()
 	{
-		Enemy::~Enemy();
 	}
 	void action()
 	{
@@ -176,7 +172,6 @@ public:
 	}
 	~Dropper()
 	{
-		Enemy::~Enemy();
 	}
 	void action()
 	{
@@ -210,7 +205,6 @@ public:
 	}
 	~Earth()
 	{
-		Neutral::~Neutral();
 	}
 	void movement()
 	{
@@ -232,7 +226,6 @@ public:
 	}
 	~GameSpawner()
 	{
-		Spawner::~Spawner();
 	}
 	void spawnFunc()
 	{
@@ -281,7 +274,6 @@ public:
 	}
 	~PlayerObj()
 	{
-		Player::~Player();
 	}
 	void fire()
 	{
@@ -306,7 +298,6 @@ public:
 	}
 	~SpaceBarKeybind()
 	{
-		Keybind::~Keybind();
 	}
 	void action()
 	{
@@ -345,9 +336,9 @@ int main(int argc, char **argv)
 	PlayerObj *player = PlayerObj::getInstance();
 	GameSpawner *spawner = GameSpawner::getInstance();
 	SpaceBarKeybind *spacebar = SpaceBarKeybind::getInstance(SDL_SCANCODE_SPACE); // this is purely as a proof of concept, and was very helpful in testing try holding spacebar while playing :)
-	ses.add(spawner);
 	ses.setPlayer(player);
 	ses.setLabel(label);
+	ses.add(spawner);
 	ses.add(spacebar);
 	ses.run();
 	_CrtDumpMemoryLeaks();

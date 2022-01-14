@@ -2,6 +2,7 @@
 
 Effect::~Effect()
 {
+
     SDL_DestroyTexture(texture);
 }
 void Effect::draw() const

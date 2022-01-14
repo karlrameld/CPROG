@@ -7,7 +7,7 @@
 class Player : public Component
 {
 public:
-    ~Player();
+    virtual ~Player();
     void draw() const;
     void tick();
     void collisionHandler(int other);

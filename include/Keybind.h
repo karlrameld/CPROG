@@ -6,7 +6,7 @@
 class Keybind : public Component
 {
 public:
-    ~Keybind(){};
+    virtual ~Keybind();
     void draw() const {}
     void tick();
     void collisionHandler(int other) {}

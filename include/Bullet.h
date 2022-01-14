@@ -8,7 +8,7 @@
 class Bullet : public Component
 {
 public:
-    ~Bullet();
+    virtual ~Bullet();
     void draw() const;
     void tick();
     void collisionHandler(int other);

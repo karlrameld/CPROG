@@ -10,7 +10,7 @@
 class Effect : public Component
 {
 public:
-    ~Effect();
+    virtual ~Effect();
     void draw() const;
     void tick();
     void collisionHandler(int other) {}

@@ -15,7 +15,7 @@ public:
     {
         return new Label(x, y, w, h, s, size, data);
     }
-    ~Label();
+    virtual ~Label();
     void draw() const;
     void tick(){};
     void collisionHandler(int other) {}

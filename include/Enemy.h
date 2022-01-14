@@ -8,7 +8,7 @@
 class Enemy : public Component
 {
 public:
-    ~Enemy();
+    virtual ~Enemy();
     void draw() const;
     void tick();
     void collisionHandler(int other);

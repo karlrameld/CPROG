@@ -7,3 +7,7 @@ void Keybind::tick()
     if(state[key])
         action();
 }
+Keybind::~Keybind()
+{
+
+}

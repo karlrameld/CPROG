@@ -1,11 +1,12 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 #include <SDL2/SDL.h>
+#include <iostream>
 
 class Component
 {
 public:
-	virtual ~Component(){};
+	virtual ~Component() = 0;
 	virtual void draw() const = 0;
 	SDL_Rect getRect() const { return rect; }
 	virtual void tick() = 0;
