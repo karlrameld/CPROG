@@ -1,7 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-
 #include <SDL2/SDL.h>
 #include "Session.h"
 #include "Component.h"
@@ -341,6 +337,5 @@ int main(int argc, char **argv)
 	ses.add(spawner);
 	ses.add(spacebar);
 	ses.run();
-	_CrtDumpMemoryLeaks();
 	return 0;
 }

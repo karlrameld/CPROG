@@ -16,12 +16,12 @@ public:
 	void remove(Component *);
 	void run();
 	void hit(Component *);
-
 private:
 	std::vector<Component *> comps;
 	std::vector<Component *> added, removed;
 	Player *player;
 	Label *label;
+	bool collision(SDL_Rect, SDL_Rect);
 };
 
 #endif

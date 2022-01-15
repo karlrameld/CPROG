@@ -43,7 +43,7 @@ void Session::remove(Component *comp)
 	removed.push_back(comp);
 }
 
-bool collision(SDL_Rect one, SDL_Rect two) // this might be hard to follow so explanation is provided.
+bool Session::collision(SDL_Rect one, SDL_Rect two) // this might be hard to follow so explanation is provided.
 { // this works by checking if opposing sides of the rects don't intersect and returing false if that condition is met
 // source: https://gamedev.net/forums/topic/594298-very-simple-collision-detection-in-sdl-and-c/4767560/
 	if (one.y + one.h <= two.y || // if bottom of one(y cord + height) lower than top of two(y cord)
